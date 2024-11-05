@@ -4,7 +4,7 @@
 PROJECT_PATH="$(pwd)"
 
 # Step 1: Create the virtual environment in the project directory
-python3 -m venv "$PROJECT_PATH/venv"
+python3 -m venv "$PROJECT_PATH"
 
 # Step 2: Set up folder structure within the project directory
 mkdir -p "$PROJECT_PATH/static/css" "$PROJECT_PATH/static/js" "$PROJECT_PATH/static/images" "$PROJECT_PATH/templates"
@@ -32,8 +32,8 @@ if [[ -f "$PROJECT_PATH/index.html" ]]; then
 fi
 
 # Step 4: Activate the virtual environment and install Flask
-source "$PROJECT_PATH/venv/bin/activate"
-pip install flask
+source "$PROJECT_PATH/bin/activate"
+pip3 install flask
 
 echo "Setup complete. Everything is set up within '$PROJECT_PATH'."
 echo "To activate the virtual environment later, use: source venv/bin/activate"
