@@ -10,7 +10,9 @@ if [[ ! "$PROJECT_NAME" =~ ^[a-zA-Z]+$ ]]; then
 fi
 
 # Define the path for the new project outside the cloned 'summit' folder
-PROJECT_PATH="../$PROJECT_NAME"
+#PROJECT_PATH="../$PROJECT_NAME"
+BASE_DIR="$(pwd)"
+PROJECT_PATH="$BASE_DIR/../$PROJECT_NAME"
 
 # Create a virtual environment with the project name outside the 'summit' folder
 python3 -m venv "$PROJECT_PATH"
@@ -35,7 +37,7 @@ pip3 install flask
 cd "$PROJECT_PATH"
 
 # Delete the originally cloned 'summit' folder and its contents
-rm -rf ../summit
+rm -rf "$BASE_DIR"
 
 echo "Setup complete. Your project '$PROJECT_NAME' is ready and isolated in the virtual environment at '$PROJECT_PATH'."
 echo "To activate it, use: source $PROJECT_PATH/bin/activate"
