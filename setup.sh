@@ -9,7 +9,7 @@ if [[ ! "$PROJECT_NAME" =~ ^[a-zA-Z]+$ ]]; then
     exit 1
 fi
 
-# Get the absolute path of the summit directory and its true parent directory
+# Store the current summit directory and its true parent directory
 SUMMIT_DIR="$(pwd)"
 PARENT_DIR="$(dirname "$SUMMIT_DIR")"
 PROJECT_PATH="$PARENT_DIR/$PROJECT_NAME"
@@ -17,10 +17,10 @@ PROJECT_PATH="$PARENT_DIR/$PROJECT_NAME"
 # Create the virtual environment in the new project directory outside of summit
 python3 -m venv "$PROJECT_PATH"
 
-# Set up folder structure within the new project path
+# Set up folder structure in the new project path
 mkdir -p "$PROJECT_PATH/static/css" "$PROJECT_PATH/static/js" "$PROJECT_PATH/static/images" "$PROJECT_PATH/templates"
 
-# Move files into the appropriate locations within the new project structure
+# Move files to the new structure
 mv "$SUMMIT_DIR/helper.py" "$PROJECT_PATH/"
 mv "$SUMMIT_DIR/app.py" "$PROJECT_PATH/"
 mv "$SUMMIT_DIR/main.css" "$PROJECT_PATH/static/css/"
@@ -29,16 +29,15 @@ mv "$SUMMIT_DIR/project.js" "$PROJECT_PATH/static/js/"
 mv "$SUMMIT_DIR/summit.png" "$PROJECT_PATH/static/images/"
 mv "$SUMMIT_DIR/index.html" "$PROJECT_PATH/templates/"
 
-# Change to the new project directory and activate the virtual environment
-cd "$PROJECT_PATH"
-source bin/activate
+# Activate the virtual environment directly without cd'ing
+source "$PROJECT_PATH/bin/activate"
 
 # Install Flask
 pip3 install flask
 
-# Navigate back to the true parent directory of summit and delete the summit folder
-cd "$PARENT_DIR"
+# Remove the summit directory now that setup is complete
 rm -rf "$SUMMIT_DIR"
 
+# Print the final message
 echo "Setup complete. You are now in your project directory '$PROJECT_NAME'."
 echo "The virtual environment is activated. To reactivate later, use: source bin/activate"
