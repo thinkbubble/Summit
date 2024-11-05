@@ -35,10 +35,14 @@ fi
 source "$PROJECT_PATH/bin/activate"
 pip3 install flask
 
+source "$PROJECT_PATH/bin/activate"
+
 echo "Setup complete. Everything is set up within '$PROJECT_PATH'."
 echo "To activate the virtual environment later, use: source venv/bin/activate"
 
-source "$PROJECT_PATH/bin/activate"
+
 
 # Step 5: Delete setup.sh from the folder
 rm -- "$PROJECT_PATH/setup.sh"
+
+python3 app.py
