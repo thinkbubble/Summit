@@ -9,36 +9,36 @@ if [[ ! "$PROJECT_NAME" =~ ^[a-zA-Z]+$ ]]; then
     exit 1
 fi
 
-# Define the absolute path for the new project outside the cloned 'summit' folder
-PROJECT_PATH="$(pwd)/../$PROJECT_NAME"
+# Store the absolute path for the summit and new project directories
+CURRENT_DIR="$(pwd)"
+PARENT_DIR="$(dirname "$CURRENT_DIR")"
+PROJECT_PATH="$PARENT_DIR/$PROJECT_NAME"
 
-# Create a virtual environment with the project name outside the 'summit' folder
+# Create the virtual environment in the new project directory
 python3 -m venv "$PROJECT_PATH"
 
-# Set up folder structure in the new project path
+# Set up folder structure directly in the new project path
 mkdir -p "$PROJECT_PATH/static/css" "$PROJECT_PATH/static/js" "$PROJECT_PATH/static/images" "$PROJECT_PATH/templates"
 
-# Move files into the correct locations in the new structure
-mv helper.py "$PROJECT_PATH/"
-mv app.py "$PROJECT_PATH/"
-mv main.css "$PROJECT_PATH/static/css/"
-mv summit.js "$PROJECT_PATH/static/js/"
-mv project.js "$PROJECT_PATH/static/js/"
-mv summit.png "$PROJECT_PATH/static/images/"
-mv index.html "$PROJECT_PATH/templates/"
+# Move files into the new structure within the new project path
+mv "$CURRENT_DIR/helper.py" "$PROJECT_PATH/"
+mv "$CURRENT_DIR/app.py" "$PROJECT_PATH/"
+mv "$CURRENT_DIR/main.css" "$PROJECT_PATH/static/css/"
+mv "$CURRENT_DIR/summit.js" "$PROJECT_PATH/static/js/"
+mv "$CURRENT_DIR/project.js" "$PROJECT_PATH/static/js/"
+mv "$CURRENT_DIR/summit.png" "$PROJECT_PATH/static/images/"
+mv "$CURRENT_DIR/index.html" "$PROJECT_PATH/templates/"
 
-# Activate the virtual environment and install Flask
-source "$PROJECT_PATH/bin/activate"
+# Change to the new project directory and activate the virtual environment
+cd "$PROJECT_PATH"
+source bin/activate
+
+# Install Flask
 pip3 install flask
 
-# Move to the new project directory without using cd (uses pushd/popd for absolute path navigation)
-pushd "$PROJECT_PATH" > /dev/null
-
-# Delete the originally cloned 'summit' folder using $OLDPWD
-rm -rf "$OLDPWD"
+# Go back to the parent directory, delete the original cloned summit folder
+cd "$PARENT_DIR"
+rm -rf "$CURRENT_DIR"
 
 echo "Setup complete. You are now in your project directory '$PROJECT_NAME'."
 echo "The virtual environment is activated. To reactivate later, use: source bin/activate"
-
-# Use popd to return control back to this absolute path without affecting shell's working directory context.
-popd > /dev/null
