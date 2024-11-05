@@ -1,18 +1,16 @@
 #!/bin/bash
 
-# Get the absolute path of the current directory, which should be the project directory
+# Ensure we're working in the current project directory
 PROJECT_PATH="$(pwd)"
 
-# Ensure all setup happens within the current project directory
-
-# Step 1: Create a virtual environment in the project directory
+# Step 1: Create the virtual environment in the project directory
 python3 -m venv "$PROJECT_PATH/venv"
 
 # Step 2: Set up folder structure within the project directory
 mkdir -p "$PROJECT_PATH/static/css" "$PROJECT_PATH/static/js" "$PROJECT_PATH/static/images" "$PROJECT_PATH/templates"
 
 # Step 3: Move provided files to the appropriate locations within the project structure
-# Ensure these files are in the cloned repo
+# Check if each file exists before moving it to avoid errors
 if [[ -f "$PROJECT_PATH/main.css" ]]; then
     mv "$PROJECT_PATH/main.css" "$PROJECT_PATH/static/css/"
 fi
@@ -37,5 +35,5 @@ fi
 source "$PROJECT_PATH/venv/bin/activate"
 pip install flask
 
-echo "Setup complete. All files and folders are organized within '$PROJECT_PATH'."
+echo "Setup complete. Everything is set up within '$PROJECT_PATH'."
 echo "To activate the virtual environment later, use: source venv/bin/activate"
