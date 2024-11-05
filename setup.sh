@@ -32,10 +32,10 @@ source "$PROJECT_PATH/bin/activate"
 pip3 install flask
 
 # Navigate out of the 'summit' folder
-cd ..
+cd "$PROJECT_PATH"
 
 # Delete the originally cloned 'summit' folder and its contents
-rm -rf summit
+rm -rf ../summit
 
 echo "Setup complete. Your project '$PROJECT_NAME' is ready and isolated in the virtual environment at '$PROJECT_PATH'."
 echo "To activate it, use: source $PROJECT_PATH/bin/activate"
