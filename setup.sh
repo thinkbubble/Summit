@@ -9,7 +9,7 @@ if [[ ! "$PROJECT_NAME" =~ ^[a-zA-Z]+$ ]]; then
     exit 1
 fi
 
-# Get the absolute path of the summit directory and its parent
+# Store paths
 SUMMIT_DIR="$(pwd)"
 PARENT_DIR="$(dirname "$SUMMIT_DIR")"
 PROJECT_PATH="$PARENT_DIR/$PROJECT_NAME"
@@ -29,13 +29,13 @@ mv "$SUMMIT_DIR/project.js" "$PROJECT_PATH/static/js/"
 mv "$SUMMIT_DIR/summit.png" "$PROJECT_PATH/static/images/"
 mv "$SUMMIT_DIR/index.html" "$PROJECT_PATH/templates/"
 
-# Activate the virtual environment directly in the new project directory
+# Activate the virtual environment in the new project directory and install Flask
 source "$PROJECT_PATH/bin/activate"
 pip3 install flask
 
-# Navigate to the new project directory, then delete the summit directory
-cd "$PROJECT_PATH" || exit
-rm -rf "$SUMMIT_DIR"
+# Switch to the new project directory and call cleanup.sh in the background
+cd "$PROJECT_PATH"
+bash "$SUMMIT_DIR/cleanup.sh" "$SUMMIT_DIR" &
 
 echo "Setup complete. You are now in your project directory '$PROJECT_NAME'."
 echo "The virtual environment is activated. To reactivate later, use: source bin/activate"
