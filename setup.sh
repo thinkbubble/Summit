@@ -1,26 +1,43 @@
 #!/bin/bash
 
-# Step 1: Create a Python virtual environment with a name of your choice, e.g., 'myenv'
-python3 -m venv summit
+# Prompt the user for a project name and validate it
+read -p "Enter your project name (only letters, no spaces or special characters): " PROJECT_NAME
+
+# Check if project name is valid (letters only, no spaces)
+if [[ ! "$PROJECT_NAME" =~ ^[a-zA-Z]+$ ]]; then
+    echo "Invalid project name. Please use only letters with no spaces or special characters."
+    exit 1
+fi
+
+# Define the path for the new project outside the cloned 'summit' folder
+PROJECT_PATH="../$PROJECT_NAME"
+
+# Create a virtual environment with the project name
+python3 -m venv "$PROJECT_PATH"
 
 # Activate the virtual environment
-source summit/bin/activate
+source "$PROJECT_PATH/bin/activate"
 
-# Step 2: Install Flask
+# Set up folder structure in the new project path
+mkdir -p "$PROJECT_PATH/static/css" "$PROJECT_PATH/static/js" "$PROJECT_PATH/static/images" "$PROJECT_PATH/templates"
+
+# Move files into the correct locations in the new structure
+mv helper.py "$PROJECT_PATH/"
+mv app.py "$PROJECT_PATH/"
+mv main.css "$PROJECT_PATH/static/css/"
+mv summit.js "$PROJECT_PATH/static/js/"
+mv project.js "$PROJECT_PATH/static/js/"
+mv summit.png "$PROJECT_PATH/static/images/"
+mv index.html "$PROJECT_PATH/templates/"
+
+# Install Flask in the virtual environment
 pip3 install flask
-pip3 install requests
-pip3 install pymongo
-pip3 install openai
 
-# Step 3: Set up project folder structure
-mkdir -p static/css static/js static/images templates
+# Navigate out of the 'summit' folder
+cd ..
 
-# Move files into the structure
-mv app.py ./
-mv helper.py ./
-mv main.css static/css/
-mv project.js static/js/
-mv components.js static/js/
-mv index.html templates/
+# Delete the originally cloned 'summit' folder
+rm -rf summit
 
-echo "Project setup complete."
+echo "Setup complete. Your project '$PROJECT_NAME' is ready and isolated in the virtual environment at '$PROJECT_PATH'."
+echo "To activate it, use: source $PROJECT_PATH/bin/activate"
