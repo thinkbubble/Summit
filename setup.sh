@@ -9,10 +9,8 @@ if [[ ! "$PROJECT_NAME" =~ ^[a-zA-Z]+$ ]]; then
     exit 1
 fi
 
-# Define the path for the new project outside the cloned 'summit' folder
-#PROJECT_PATH="../$PROJECT_NAME"
-BASE_DIR="$(pwd)"
-PROJECT_PATH="$BASE_DIR/../$PROJECT_NAME"
+# Define the absolute path for the new project outside the cloned 'summit' folder
+PROJECT_PATH="$(pwd)/../$PROJECT_NAME"
 
 # Create a virtual environment with the project name outside the 'summit' folder
 python3 -m venv "$PROJECT_PATH"
@@ -33,11 +31,14 @@ mv index.html "$PROJECT_PATH/templates/"
 source "$PROJECT_PATH/bin/activate"
 pip3 install flask
 
-# Navigate out of the 'summit' folder
-cd "$PROJECT_PATH"
+# Move to the new project directory without using cd (uses pushd/popd for absolute path navigation)
+pushd "$PROJECT_PATH" > /dev/null
 
-# Delete the originally cloned 'summit' folder and its contents
-rm -rf "$BASE_DIR"
+# Delete the originally cloned 'summit' folder using $OLDPWD
+rm -rf "$OLDPWD"
 
-echo "Setup complete. Your project '$PROJECT_NAME' is ready and isolated in the virtual environment at '$PROJECT_PATH'."
-echo "To activate it, use: source $PROJECT_PATH/bin/activate"
+echo "Setup complete. You are now in your project directory '$PROJECT_NAME'."
+echo "The virtual environment is activated. To reactivate later, use: source bin/activate"
+
+# Use popd to return control back to this absolute path without affecting shell's working directory context.
+popd > /dev/null
