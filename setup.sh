@@ -35,6 +35,7 @@ fi
 source "$PROJECT_PATH/bin/activate"
 pip3 install flask
 pip3 install pymongo
+pip3 install requests
 
 source "$PROJECT_PATH/bin/activate"
 
