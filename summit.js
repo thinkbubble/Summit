@@ -1,17 +1,4 @@
-// Function to append html elements stored as a string to a specified parent element
 
-function appendHtmlToParent(htmlString, parentElement) {
-
-    // Check if the parent exists in the DOM
-    if (parentElement) {
-        // Insert the HTML string as the last child of the parent element
-        parentElement.insertAdjacentHTML('beforeend', htmlString);
-    } else {
-        // Log an error if the parent does not exist
-        console.error('The parent element does not exist.');
-    }
-    
-}
 
 
 // Creates any element of your choice
@@ -43,6 +30,102 @@ function createAndAppendElement(type, attributes, parentElement) {
     return element;
 
 }
+
+
+
+
+// Function to append html elements stored as a string to a specified parent element
+
+function appendHtmlToParent(htmlString, parentElement) {
+
+    // Check if the parent exists in the DOM
+    if (parentElement) {
+        // Insert the HTML string as the last child of the parent element
+        parentElement.insertAdjacentHTML('beforeend', htmlString);
+    } else {
+        // Log an error if the parent does not exist
+        console.error('The parent element does not exist.');
+    }
+    
+}
+
+
+function clearCenteredBlock(component) {
+    if (component) {
+        component.innerHTML = ''
+    }
+}
+
+function clearDynamicHeadElements() {
+
+    const elements = document.head.querySelectorAll('*');
+    elements.forEach(element => {
+        // Check if the element has the data-static attribute set to true
+        if (element.dataset && element.dataset.static !== "true") {
+            document.head.removeChild(element);
+        }
+    });
+
+}
+
+
+
+
+function titleAndMeta(headBlock, titleContent, metaContent) {
+
+    // Head data
+
+    createAndAppendElement('title', {
+
+        innerHTML: titleContent,
+        id: 'titleElement'
+
+    }, headBlock);
+
+    createAndAppendElement('meta', {
+
+        name: 'description',
+        id: 'metaElementMain',
+        content: metaContent
+
+    }, headBlock);
+
+}
+
+
+function startOffAPage(headBlock, centeredBlock, titleContent, metaContent) {
+
+    clearCenteredBlock(centeredBlock);
+    
+    // Clear head except for data-static = 'true'
+    clearDynamicHeadElements();
+
+    // Adds title and meta to head
+    titleAndMeta(headBlock, titleContent, metaContent);
+
+    // Adds favicons, additional scripts, etc. to head
+    appendHtmlToParent(headBlock, headBlock);
+
+}
+
+
+
+function trustLogoElement() {
+    const trust_logo = `
+        <div id="trust-logo-container">
+            <script data-static="true" type="text/javascript"> //<![CDATA[
+                var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-provider.com/" : "http://www.trustlogo.com/");
+                document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
+            //]]></script>
+            <script language="JavaScript" type="text/javascript">
+                TrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_md_167x42.png", "POSDV", "none");
+            </script>
+        </div>
+    `
+    return trust_logo
+}
+
+
 
 
 
@@ -135,8 +218,265 @@ function source(parent, attributes = {}) {
     return createAndAppendElement('source', attributes, parent)
 }
 
+function ul(parent, attributes = {}) {
+    return createAndAppendElement('ul', attributes, parent);
+}
 
+function ol(parent, attributes = {}) {
+    return createAndAppendElement('ol', attributes, parent);
+}
 
+function li(parent, attributes = {}) {
+    return createAndAppendElement('li', attributes, parent);
+}
+
+function table(parent, attributes = {}) {
+    return createAndAppendElement('table', attributes, parent);
+}
+
+function tr(parent, attributes = {}) {
+    return createAndAppendElement('tr', attributes, parent);
+}
+
+function td(parent, attributes = {}) {
+    return createAndAppendElement('td', attributes, parent);
+}
+
+function th(parent, attributes = {}) {
+    return createAndAppendElement('th', attributes, parent);
+}
+
+function tbody(parent, attributes = {}) {
+    return createAndAppendElement('tbody', attributes, parent);
+}
+
+function thead(parent, attributes = {}) {
+    return createAndAppendElement('thead', attributes, parent);
+}
+
+function tfoot(parent, attributes = {}) {
+    return createAndAppendElement('tfoot', attributes, parent);
+}
+
+function span(parent, attributes = {}) {
+    return createAndAppendElement('span', attributes, parent);
+}
+
+function nav(parent, attributes = {}) {
+    return createAndAppendElement('nav', attributes, parent);
+}
+
+function header(parent, attributes = {}) {
+    return createAndAppendElement('header', attributes, parent);
+}
+
+function footer(parent, attributes = {}) {
+    return createAndAppendElement('footer', attributes, parent);
+}
+
+function article(parent, attributes = {}) {
+    return createAndAppendElement('article', attributes, parent);
+}
+
+function aside(parent, attributes = {}) {
+    return createAndAppendElement('aside', attributes, parent);
+}
+
+function iframe(parent, attributes = {}) {
+    return createAndAppendElement('iframe', attributes, parent);
+}
+
+function video(parent, attributes = {}) {
+    return createAndAppendElement('video', attributes, parent);
+}
+
+function svg(parent, attributes = {}) {
+    return createAndAppendElement('svg', attributes, parent);
+}
+
+function path(parent, attributes = {}) {
+    return createAndAppendElement('path', attributes, parent);
+}
+
+function textarea(parent, attributes = {}) {
+    return createAndAppendElement('textarea', attributes, parent);
+}
+
+function select(parent, attributes = {}) {
+    return createAndAppendElement('select', attributes, parent);
+}
+
+function option(parent, attributes = {}) {
+    return createAndAppendElement('option', attributes, parent);
+}
+
+function strong(parent, attributes = {}) {
+    return createAndAppendElement('strong', attributes, parent);
+}
+
+function em(parent, attributes = {}) {
+    return createAndAppendElement('em', attributes, parent);
+}
+
+function br(parent) {
+    return createAndAppendElement('br', {}, parent);
+}
+
+function hr(parent, attributes = {}) {
+    return createAndAppendElement('hr', attributes, parent);
+}
+
+function map(parent, attributes = {}) {
+    return createAndAppendElement('map', attributes, parent);
+}
+
+function area(parent, attributes = {}) {
+    return createAndAppendElement('area', attributes, parent);
+}
+
+function link(parent, attributes = {}) {
+    return createAndAppendElement('link', attributes, parent);
+}
+
+function meta(parent, attributes = {}) {
+    return createAndAppendElement('meta', attributes, parent);
+}
+
+function title(parent, attributes = {}) {
+    return createAndAppendElement('title', attributes, parent);
+}
+
+function style(parent, attributes = {}) {
+    return createAndAppendElement('style', attributes, parent);
+}
+
+function base(parent, attributes = {}) {
+    return createAndAppendElement('base', attributes, parent);
+}
+
+function head(parent, attributes = {}) {
+    return createAndAppendElement('head', attributes, parent);
+}
+
+function body(parent, attributes = {}) {
+    return createAndAppendElement('body', attributes, parent);
+}
+
+function main(parent, attributes = {}) {
+    return createAndAppendElement('main', attributes, parent);
+}
+
+function b(parent, attributes = {}) {
+    return createAndAppendElement('b', attributes, parent);
+}
+
+function i(parent, attributes = {}) {
+    return createAndAppendElement('i', attributes, parent);
+}
+
+function small(parent, attributes = {}) {
+    return createAndAppendElement('small', attributes, parent);
+}
+
+function cite(parent, attributes = {}) {
+    return createAndAppendElement('cite', attributes, parent);
+}
+
+function q(parent, attributes = {}) {
+    return createAndAppendElement('q', attributes, parent);
+}
+
+function code(parent, attributes = {}) {
+    return createAndAppendElement('code', attributes, parent);
+}
+
+function pre(parent, attributes = {}) {
+    return createAndAppendElement('pre', attributes, parent);
+}
+
+function blockquote(parent, attributes = {}) {
+    return createAndAppendElement('blockquote', attributes, parent);
+}
+
+function address(parent, attributes = {}) {
+    return createAndAppendElement('address', attributes, parent);
+}
+
+function figure(parent, attributes = {}) {
+    return createAndAppendElement('figure', attributes, parent);
+}
+
+function figcaption(parent, attributes = {}) {
+    return createAndAppendElement('figcaption', attributes, parent);
+}
+
+function mark(parent, attributes = {}) {
+    return createAndAppendElement('mark', attributes, parent);
+}
+
+function time(parent, attributes = {}) {
+    return createAndAppendElement('time', attributes, parent);
+}
+
+function ins(parent, attributes = {}) {
+    return createAndAppendElement('ins', attributes, parent);
+}
+
+function del(parent, attributes = {}) {
+    return createAndAppendElement('del', attributes, parent);
+}
+
+function kbd(parent, attributes = {}) {
+    return createAndAppendElement('kbd', attributes, parent);
+}
+
+function samp(parent, attributes = {}) {
+    return createAndAppendElement('samp', attributes, parent);
+}
+
+function varElement(parent, attributes = {}) {
+    return createAndAppendElement('var', attributes, parent);
+}
+
+function sup(parent, attributes = {}) {
+    return createAndAppendElement('sup', attributes, parent);
+}
+
+function sub(parent, attributes = {}) {
+    return createAndAppendElement('sub', attributes, parent);
+}
+
+function progress(parent, attributes = {}) {
+    return createAndAppendElement('progress', attributes, parent);
+}
+
+function meter(parent, attributes = {}) {
+    return createAndAppendElement('meter', attributes, parent);
+}
+
+function output(parent, attributes = {}) {
+    return createAndAppendElement('output', attributes, parent);
+}
+
+function details(parent, attributes = {}) {
+    return createAndAppendElement('details', attributes, parent);
+}
+
+function summary(parent, attributes = {}) {
+    return createAndAppendElement('summary', attributes, parent);
+}
+
+function datalist(parent, attributes = {}) {
+    return createAndAppendElement('datalist', attributes, parent);
+}
+
+function fieldset(parent, attributes = {}) {
+    return createAndAppendElement('fieldset', attributes, parent);
+}
+
+function legend(parent, attributes = {}) {
+    return createAndAppendElement('legend', attributes, parent);
+}
 
 
 
@@ -237,25 +577,6 @@ function containsWhiteSpace(str) {
     return str.includes(' ');
 }
 
-
-
-function clearCenteredBlock(component) {
-    if (component) {
-        component.innerHTML = ''
-    }
-}
-
-function clearDynamicHeadElements() {
-
-    const elements = document.head.querySelectorAll('*');
-    elements.forEach(element => {
-        // Check if the element has the data-static attribute set to true
-        if (element.dataset && element.dataset.static !== "true") {
-            document.head.removeChild(element);
-        }
-    });
-
-}
 
 
 
@@ -413,28 +734,6 @@ function createRadioButtonsWithOptions(attributes, options, parentElement) {
     parentElement.appendChild(container);
 
     return container;
-
-}
-
-
-function titleAndMeta(headBlock, titleContent, metaContent) {
-
-    // Head data
-
-    createAndAppendElement('title', {
-
-        innerHTML: titleContent,
-        id: 'titleElement'
-
-    }, headBlock);
-
-    createAndAppendElement('meta', {
-
-        name: 'description',
-        id: 'metaElementMain',
-        content: metaContent
-
-    }, headBlock);
 
 }
 
