@@ -34,6 +34,7 @@ fi
 # Step 4: Activate the virtual environment and install Flask
 source "$PROJECT_PATH/bin/activate"
 pip3 install flask
+pip3 install pymongo
 
 source "$PROJECT_PATH/bin/activate"
 
