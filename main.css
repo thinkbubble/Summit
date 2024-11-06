@@ -17,6 +17,7 @@ body {
 #summit_image {
     max-width: 100%;
     height: auto;
+    font-weight: bolder;
 }
 
 h1 {
