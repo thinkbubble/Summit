@@ -1,36 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summit Framework</title>
+<head id="index_head">
+
+    <meta  data-static="true" charset="UTF-8">
+    <meta  data-static="true" name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Import Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link  data-static="true" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <!-- Link to your custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link  data-static="true" rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
     <!-- Import jQuery (for AJAX) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script  data-static="true" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- Link to Summit JavaScript file -->
-    <script src="{{ url_for('static', filename='js/summit.js') }}"></script>
+    <!-- Link to Summit JavaScript file 
+    <script src="{{ url_for('static', filename='js/summit.js') }}"></script>-->
+    <script  data-static="true" src="{{ url_for('summit_static', filename='summit.js') }}"></script>
 
     <!-- Link to your custom JavaScript file -->
-    <script src="{{ url_for('static', filename='js/project.js') }}"></script>
-</head>
-<body>
-    <div class="container" id="container">
-        <h1>Welcome to the Summit!</h1>
-        <!-- Script to create and append the image element -->
-        <script>
-            // Pass the image source as an attribute for the img function
-            img(document.getElementById("container"), { id: "summit_image", src: "{{ url_for('static', filename='images/summit.png') }}" });
-        </script>
-    </div>
+    <script  data-static="true" src="{{ url_for('static', filename='js/project.js') }}"></script>
 
-    <!-- Import Bootstrap JavaScript (optional for Bootstrap components) -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body id="index_body" data-page="{{ page }}">
+    <div id="centered_block">
+        
+    </div>
 </body>
 </html>
+
