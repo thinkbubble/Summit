@@ -26,7 +26,7 @@
         <!-- Script to create and append the image element -->
         <script>
             // Pass the image source as an attribute for the img function
-            img(document.getElementById("container"), { src: "{{ url_for('static', filename='images/summit.png') }}" });
+            img(document.getElementById("container"), { id: "summit_image", src: "{{ url_for('static', filename='images/summit.png') }}" });
         </script>
     </div>
 
