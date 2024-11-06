@@ -310,3 +310,140 @@ def send_password_reset_email(email_address, subject, flask_endpoint_for_reset, 
 def choose_random_integer(start, end):
     return random.randint(start, end)
 
+
+# Chooses a random item from a list
+def choose_random_item(item_list):
+
+    if not item_list:
+        return None  # Return None if the list is empty
+    return random.choice(item_list)
+
+
+
+# NEEDS API KEYS
+
+
+
+# OpenWeatherMap - Get Weather Data
+
+def get_weather(api_key, city):
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"Error {response.status_code}: {response.text}")
+        return None
+    
+# Twitter - Get User Tweets
+
+def get_user_tweets(bearer_token, username, tweet_count=10):
+    headers = {"Authorization": f"Bearer {bearer_token}"}
+    url = f"https://api.twitter.com/2/tweets?username={username}&max_results={tweet_count}"
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"Error {response.status_code}: {response.text}")
+        return None
+    
+# GitHub - Repo Data
+
+def get_github_repo_info(owner, repo):
+    url = f"https://api.github.com/repos/{owner}/{repo}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"Error {response.status_code}: {response.text}")
+        return None
+    
+
+# Google Maps Geocoding API
+
+def get_lat_lon(api_key, address):
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?address={address}&key={api_key}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"Error {response.status_code}: {response.text}")
+        return None
+    
+
+# YouTube Data API - Search Videos with a query
+
+
+def search_youtube_videos(api_key, query, max_results=5):
+    url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&q={query}&type=video&maxResults={max_results}&key={api_key}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"Error {response.status_code}: {response.text}")
+        return None
+    
+
+# News API
+
+def get_top_headlines(api_key, country="us"):
+    url = f"https://newsapi.org/v2/top-headlines?country={country}&apiKey={api_key}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"Error {response.status_code}: {response.text}")
+        return None
+    
+
+# Spotify API - Get Track Information
+
+def get_spotify_track_info(access_token, track_id):
+    headers = {"Authorization": f"Bearer {access_token}"}
+    url = f"https://api.spotify.com/v1/tracks/{track_id}"
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"Error {response.status_code}: {response.text}")
+        return None
+    
+
+# Unsplash API - Get Random Photo
+# Free API is limited to 50 photos an hour
+
+def get_random_photo(access_key):
+    url = f"https://api.unsplash.com/photos/random?client_id={access_key}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"Error {response.status_code}: {response.text}")
+        return None
+    
+
+# NASA API - Get Astronomy Picture of the Day
+
+def get_apod(api_key):
+    url = f"https://api.nasa.gov/planetary/apod?api_key={api_key}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"Error {response.status_code}: {response.text}")
+        return None
+    
+
+# CoinGecko API - Get Cryptocurrency Price
+
+def get_crypto_price(coin_id, vs_currency="usd"):
+    url = f"https://api.coingecko.com/api/v3/simple/price?ids={coin_id}&vs_currencies={vs_currency}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"Error {response.status_code}: {response.text}")
+        return None
+
+
+
