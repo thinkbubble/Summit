@@ -7,7 +7,7 @@ PROJECT_PATH="$(pwd)"
 python3 -m venv "$PROJECT_PATH"
 
 # Step 2: Set up folder structure within the project directory
-mkdir -p "$PROJECT_PATH/static/css" "$PROJECT_PATH/static/js" "$PROJECT_PATH/static/images" "$PROJECT_PATH/templates"
+mkdir -p "$PROJECT_PATH/static/css" "$PROJECT_PATH/static/js" "$PROJECT_PATH/static/images" "$PROJECT_PATH/templates" "$PROJECT_PATH/summit"
 
 # Step 3: Move provided files to the appropriate locations within the project structure
 # Check if each file exists before moving it to avoid errors
@@ -16,7 +16,11 @@ if [[ -f "$PROJECT_PATH/main.css" ]]; then
 fi
 
 if [[ -f "$PROJECT_PATH/summit.js" ]]; then
-    mv "$PROJECT_PATH/summit.js" "$PROJECT_PATH/static/js/"
+    mv "$PROJECT_PATH/summit.js" "$PROJECT_PATH/summit/"
+fi
+
+if [[ -f "$PROJECT_PATH/summit.py" ]]; then
+    mv "$PROJECT_PATH/summit.py" "$PROJECT_PATH/summit/"
 fi
 
 if [[ -f "$PROJECT_PATH/project.js" ]]; then
