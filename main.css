@@ -1,22 +1,24 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-}
 
-.container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+#centered_block {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    background: radial-gradient(circle, #65F9FC 10%, #010518 70%);
 }
 
 #summit_image {
+    display: block;
+    margin: auto;
     max-width: 100%;
-    height: auto;
+    border-radius: 50%;
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
 }
 
 h1 {
@@ -26,6 +28,40 @@ h1 {
     font-weight: bolder;
 }
 
-p {
-    color: #333;
+#text-container {
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Text styling */
+#text-container h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+#text-container a {
+    color: #FFD700;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+#text-container a:hover {
+    text-decoration: underline;
+}
+
+#trust-logo-container {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: 100px;
+    height: auto;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+#trust-logo-container img {
+    width: 100%;
+    height: auto;
 }
