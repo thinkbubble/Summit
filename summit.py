@@ -15,6 +15,7 @@ import smtplib
 import string
 import random
 import base64
+import openai
 import pytz
 import csv
 import os
@@ -321,6 +322,23 @@ def choose_random_item(item_list):
 
 
 # NEEDS API KEYS
+
+
+def gpt_connection(userPrompt, openai_api_key):
+    openai.api_key = openai_api_key
+    print('Chat Connection Started')
+    completion = openai.chat.completions.create(
+        model="gpt-4",
+        messages=[
+            {
+                "role": "user",
+                "content": userPrompt,
+            },
+        ],
+    )
+    print('Chat Connection Complete')
+    return completion.choices[0].message.content
+
 
 
 
