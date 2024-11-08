@@ -44,6 +44,7 @@ pip3 install cryptography
 pip3 install pytz
 pip3 install python-dotenv
 pip3 install pandas
+pip3 install openai
 
 source "$PROJECT_PATH/bin/activate"
 
