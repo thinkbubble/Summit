@@ -340,6 +340,34 @@ def gpt_connection(userPrompt, openai_api_key):
     return completion.choices[0].message.content
 
 
+def llama_api(url, prompt, api_key):
+
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": api_key
+    }
+    data = {
+        "prompt": prompt
+    }
+
+    # Send the POST request
+    response = requests.post(url, headers=headers, json=data)
+
+
+    # Check the response status and print the result
+    if response.status_code == 200:
+        try:
+            #print("Response:", response.json()["response"])
+            return response.json()["response"]
+        except ValueError:
+            # Handle the case where the response is not JSON-formatted
+            #print("Response (not JSON):", response.text)
+            return "Response (not JSON):" + response.text
+    else:
+        #print("Error:", response.status_code)
+        #print("Raw Response:", response.text)
+        return "Error: " + response.status_code
+
 
 
 # OpenWeatherMap - Get Weather Data
