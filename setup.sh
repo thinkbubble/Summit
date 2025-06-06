@@ -43,6 +43,7 @@ pip3 install requests
 pip3 install cryptography
 pip3 install pytz
 pip3 install python-dotenv
+pip3 install gevent
 
 source "$PROJECT_PATH/bin/activate"
 
