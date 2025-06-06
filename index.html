@@ -8,24 +8,31 @@
     <!-- Import Bootstrap CSS -->
     <link  data-static="true" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    <!-- Link to your custom CSS -->
-    <link  data-static="true" rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-
     <!-- Import jQuery (for AJAX) -->
     <script  data-static="true" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- Link to Summit JavaScript file 
-    <script src="{{ url_for('static', filename='js/summit.js') }}"></script>-->
-    <script  data-static="true" src="{{ url_for('summit_static', filename='summit.js') }}"></script>
+    <!-- Link to Summit CSS - Elements -->
+    <link  data-static="true" rel="stylesheet" href="/static/css/summit.css">
 
+    <!-- Link to Summit JavaScript - Elements and Built-In -->
+    <script  data-static="true" src="/static/js/summit.js"></script>
+    
     <!-- Link to your custom JavaScript file -->
-    <script  data-static="true" src="{{ url_for('static', filename='js/project.js') }}"></script>
+    <script  data-static="true" src="/static/js/project.js"></script>
+
+    <!-- Link to your custom Ajax Handling JavaScript file -->
+    <script  data-static="true" src="/static/js/summit_ajax.js"></script>
+    
+    <!-- UNCOMMENT THIS IF YOU WANT TO USE GOOGLE RECAPTCHA -->
+    <!--<script data-static="true" src="https://www.google.com/recaptcha/api.js?render=GET_YOUR_GOOGLE_RECAPTCHA_KEY"></script>-->
 
 </head>
-<body id="index_body" data-page="{{ page }}">
+
+<body id="index_body" data-page="home">
+    <div id="outer_block">
     <div id="centered_block">
         
     </div>
+    </div>
 </body>
 </html>
-
