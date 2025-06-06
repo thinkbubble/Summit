@@ -16,6 +16,10 @@ if [[ -f "$PROJECT_PATH/summit.css" ]]; then
     mv "$PROJECT_PATH/summit.css" "$PROJECT_PATH/static/css/"
 fi
 
+if [[ -f "$PROJECT_PATH/main.css" ]]; then
+    mv "$PROJECT_PATH/main.css" "$PROJECT_PATH/static/css/"
+fi
+
 if [[ -f "$PROJECT_PATH/summit.js" ]]; then
     mv "$PROJECT_PATH/summit.js" "$PROJECT_PATH/static/js/"
 fi
