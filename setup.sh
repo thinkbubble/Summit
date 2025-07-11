@@ -4,7 +4,7 @@
 PROJECT_PATH="$(pwd)"
 
 # Step 1: Create the virtual environment in the project directory
-python3 -m venv "$PROJECT_PATH"
+python3.12 -m venv "$PROJECT_PATH"
 
 # Step 2: Set up folder structure within the project directory
 mkdir -p "$PROJECT_PATH/static/css" "$PROJECT_PATH/static/js" "$PROJECT_PATH/static/images" "$PROJECT_PATH/templates"
@@ -54,4 +54,4 @@ echo "To activate the virtual environment later, use: source venv/bin/activate"
 # Step 5: Delete setup.sh from the folder
 rm -- "$PROJECT_PATH/setup.sh"
 
-python3 app.py
+python3.12 app.py
